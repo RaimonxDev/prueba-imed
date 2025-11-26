@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@keyframes beam {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-20px);
+  }
+}
+
+@utility animate-beam {
+  animation: beam 8s ease-in-out infinite;
+}
+
+@utility animate-beam-slow {
+  animation: beam 10s ease-in-out infinite reverse;
+}
+
+@utility animate-beam-slower {
+  animation: beam 12s ease-in-out infinite;
+}
+
+@utility animate-beam-medium {
+  animation: beam 9s ease-in-out infinite reverse;
+}
