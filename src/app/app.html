@@ -51,14 +51,36 @@
           >{{ urlParams() | json }}</pre
         >
 
-        <div class="mt-4 flex justify-center w-full">
-          <button
-            type="button"
-            class="inline-flex items-center gap-x-1.5 rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
-            (click)="cerrarVentana()"
-          >
-            Cerrar Ventana
-          </button>
+        <div class="mt-4 flex flex-col items-center gap-4 w-full">
+          <div class="flex gap-3">
+            <button
+              type="button"
+              class="inline-flex items-center gap-x-1.5 rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+              (click)="cerrarVentana()"
+            >
+              Cerrar Ventana
+            </button>
+            <button
+              type="button"
+              class="inline-flex items-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2"
+              [class]="activarAutoClose() ? 'bg-red-600 hover:bg-red-500 focus-visible:outline-red-600' : 'bg-green-600 hover:bg-green-500 focus-visible:outline-green-600'"
+              (click)="toggleAutoClose()"
+            >
+              {{ activarAutoClose() ? 'Cancelar' : 'Activar' }} Auto Cierre
+            </button>
+          </div>
+
+          @if (activarAutoClose() && timeRemaining() > 0) {
+            <div class="text-center">
+              <p class="text-gray-600 dark:text-gray-300 text-sm">
+                La ventana se cerrará en
+              </p>
+              <span class="text-3xl font-bold text-sky-600 dark:text-sky-400">
+                {{ timeRemaining() }}
+              </span>
+              <p class="text-gray-500 dark:text-gray-400 text-xs">segundos</p>
+            </div>
+          }
         </div>
       </div>
     </div>
